@@ -10,3 +10,7 @@
 ## 动画轨迹展示
 
 [点击查看](https://kuan1.github.io/EasingFunctions/)
+
+## EasingFuncton 来自
+
+[github](https://gist.github.com/gre/1650294)
