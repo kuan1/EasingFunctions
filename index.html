@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EasingFunctions</title>
+    <style>
+      .title {
+        text-align: center;
+      }
+      canvas {
+        max-width: 400px;
+        height: 400px;
+        display: block;
+        margin: 0 auto;
+        background-color: #f5f5f5;
+      }
+      .buttons {
+        margin: 20px;
+      }
+      .buttons button {
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title">EasingFunctions</h1>
+    <canvas id="canvas"></canvas>
+    <div class="buttons"></div>
+
+    <script src="./EasingFunctions.js"></script>
+    <script>
+      let key = 'linear'
+
+      draw()
+      function draw() {
+        const canvas = document.querySelector('canvas')
+        const ctx = canvas.getContext('2d')
+        const w = (canvas.width = canvas.offsetWidth)
+        const h = (canvas.height = canvas.offsetHeight)
+        ctx.beginPath()
+        ctx.moveTo(0, h)
+
+        for (let i = 0; i < w; i++) {
+          const y = EasingFunctions[key](i / w) * w
+          ctx.lineTo(i, h - y)
+        }
+        ctx.stroke()
+      }
+
+      createButtons()
+      function createButtons() {
+        document.querySelector('.buttons').innerHTML = Object.keys(EasingFunctions)
+          .map((item) => `<button>${item}</button>`)
+          .join('')
+
+        const btns = document.querySelectorAll('.buttons button')
+        for (let i = 0; i < btns.length; i++) {
+          const btn = btns[i]
+          btn.onclick = () => {
+            key = btn.innerHTML
+            draw()
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
